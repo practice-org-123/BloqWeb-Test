@@ -1,0 +1,124 @@
+{
+        "info": {
+                "_postman_id": "8a905910-28f5-436a-8b50-f3c5bb9bbfc2",
+                "name": "Health-Check",
+                "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+                "_exporter_id": "25819871",
+                "_collection_link": "https://orange-moon-666993.postman.co/workspace/BloqWeb~4e1f0987-531d-4f3a-ab0f-29d7f04f0483/collection/25819871-8a905910-f3c5bb9bbfc2?action=share&source=collection_link&creator=25819871"
+        },
+        "item": [
+                {
+                        "name": "Form-Library HC",
+                        "event": [
+                                {
+                                        "listen": "test",
+                                        "script": {
+                                                "exec": [
+                                                        "",
+                                                        "pm.test(\"Response status code is 400\", function () {",
+                                                        "    pm.expect(pm.response.code).to.equal(200);",
+                                                        "});",
+                                                        "",
+                                                        "",
+                                                        "pm.test(\"Response body is not empty\", function () {",
+                                                        "    const responseData = pm.response.json();   ",
+                                                        "    pm.expect(responseData).to.not.be.empty;",
+                                                        "});",
+                                                        "",
+                                                        "",
+                                                        "pm.test(\"Response body message should be 'Health is Ok!'\", function() {",
+                                                        "    pm.expect(\"Helath is not Ok!\").to.eql(\"Helath is Ok!\");",
+                                                        "})",
+                                                        ""
+                                                ],
+                                                "type": "text/javascript"
+                                        }
+                                }
+                        ],
+                        "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": "https://api.qa.bloqcube.com/form-library/check-health",
+                                "description": "\nThis endpoint is used to check the health status of the form library. \n\nThe response will have a status cthe content type will be in JSON format.\n"
+                        },
+                        "response": []
+                },
+                {
+                        "name": "Trial-Mgmt HC",
+                        "event": [
+                                {
+                                        "listen": "test",
+                                        "script": {
+                                                "exec": [
+                                                        "",
+                                                        "pm.test(\"Response status code is 200\", function () {",
+                                                        "    pm.expect(pm.response.code).to.equal(200);",
+                                                        "});",
+                                                        "",
+                                                        "",
+                                                        "pm.test(\"Response body is not empty\", function () {",
+                                                        "    const responseData = pm.response.json();   ",
+                                                        "    pm.expect(responseData).to.not.be.empty;",
+                                                        "});",
+                                                        "",
+                                                        "",
+                                                        "pm.test(\"Response body message should be 'Health is Ok!'\", function() {",
+                                                        "    pm.expect(\"Helath is Ok!\").to.eql(\"Helath is Ok!\");",
+                                                        "})",
+                                                        ""
+                                                ],
+                                                "type": "text/javascript"
+                                        }
+                                }
+                        ],
+                        "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": "https://api.qa.bloqcube.com/trial-mgmt/check-health"
+                        },
+                        "response": []
+                },
+                {
+                        "name": "Sys-Admin HC",
+                        "event": [
+                                {
+                                        "listen": "test",
+                                        "script": {
+                                                "exec": [
+                                                        "",
+                                                        "pm.test(\"Response status code is 200\", function () {",
+                                                        "    pm.expect(pm.response.code).to.equal(200);",
+                                                        "});",
+                                                        "",
+                                                        "",
+                                                        "pm.test(\"Response body is not empty\", function () {",
+                                                        "    const responseData = pm.response.json();   ",
+                                                        "    pm.expect(responseData).to.not.be.empty;",
+                                                        "});",
+                                                        "",
+                                                        "",
+                                                        "pm.test(\"Response body message should be 'Health is Ok!'\", function() {",
+                                                        "    pm.expect(\"Health is Ok!\").to.eql(\"Health is Ok!\");",
+                                                        "})",
+                                                        ""
+                                                ],
+                                                "type": "text/javascript"
+                                        }
+                                }
+                        ],
+                        "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                        },
+                        "request": {
+                                "method": "GET",
+                                "header": [],
+                                "body": {
+                                        "mode": "raw",
+                                        "raw": ""
+                                },
+                                "url": "https://api.qa.bloqcube.com/system-admin/check-health"
+                        },
+                        "response": []
+                }
+        ]
+}
