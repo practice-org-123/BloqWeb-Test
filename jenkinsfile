@@ -4,71 +4,52 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Clone the repository
                 git url: 'https://github.com/Joshisumedhraj/BloqWeb-demo.git', branch: 'main'
             }
         }
 
-        stage('Install Dependencies') {
-            steps {
-                // Install Node.js dependencies
-                sh 'npm install -g newman'
-            }
-        }
+      
+        // stage('Install Dependencies') {
+        //     steps {
+        //         sh '''
+        //         npm install -g uuid@latest
+        //         npm install har-validator
+        //         npm install -g newman newman-reporter-htmlextra
+        //         newman-reporter-htmlextra -v
+        //         '''
+        //     }
+        // }
+        
+        
 
         stage('Run Postman Collection') {
             steps {
-                // Run the Postman collection
-                sh 'newman run Health-Check.postman_collection.json -r htmlextra'
+                sh 'newman run Health-Check.postman_collection.json -r cli,htmlextra  --reporter-htmlextra-export /newman/reports/'
             }
         }
+        
+        // stage('Generate Report') {
+        //     steps {
+        //         sh '''
+        //             mkdir -p $JENKINS_HOME/workspace/$JOB_BASE_NAME/htmlreports/Bloqweb_20HTML_20Report
+        //             echo "<html><body><h1>Report</h1></body></html>" > $JENKINS_HOME/workspace/$JOB_BASE_NAME/htmlreports/Bloqweb_20HTML_20Report/index.html
 
-        stages {
-        stage('Generate Report') {
-            steps {
-                // Assuming your script generates the report in the specified directory
-                sh 'mkdir -p /var/lib/jenkins/jobs/BloqWeb/htmlreports/Bloqweb_20HTML_20Report && echo "<html><body><h1>Report</h1></body></html>" > /var/lib/jenkins/jobs/BloqWeb/htmlreports/HTML_20Report'
-            }
-        }
+        //         '''
+        //     }
+        // }
     }
 
     post {
         success {
             publishHTML(target: [
-                reportName : 'My Report',
-                reportDir  : '/var/lib/jenkins/jobs/BloqWeb/htmlreports/HTML_20Report',
+                reportName: 'My Report',
+                reportDir: 'htmlreports/Bloqweb_20HTML_20Report',
                 reportFiles: 'index.html',
-                keepAll    : true,
+                keepAll: true,
                 alwaysLinkToLastBuild: true,
                 allowMissing: false
             ])
         }
     }
-}
 
-
-    stages {
-        stage('Checkout') {
-            steps {
-                // Clone the repository
-                git url: 'https://github.com/your-repo.git', branch: 'main'
-            }
-        }
-        stage('Install Dependencies') {
-            steps {
-                script {
-                    // Install Newman and htmlextra reporter globally
-                    sh 'npm install -g newman newman-reporter-htmlextra'
-                }
-            }
-        }
-        stage('Run Postman Collection') {
-            steps {
-                script {
-                    // Run the Postman collection with htmlextra reporter
-                    sh 'newman run path/to/your/postman_collection.json -r htmlextra'
-                }
-            }
-        }
-    }
 }

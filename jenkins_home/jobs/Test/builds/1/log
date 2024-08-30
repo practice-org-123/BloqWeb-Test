@@ -1,0 +1,23 @@
+Started by user [8mha:////4EH4HDMGvqW9IOFdEgoc/j0FFV+9PdE6fsh089VBbVcCAAAAmR+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgZe/dLi1CL9osSUjMzsRACt7G07wgAAAA==[0mRadhika J
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/Test
+The recommended git tool is: NONE
+using credential 363e0c17-10ab-4c6f-ac78-eb1c10bb1200
+Cloning the remote Git repository
+Cloning repository https://github.com/practice-org-123/BloqWeb-Test.git
+ > git init /var/jenkins_home/workspace/Test # timeout=10
+Fetching upstream changes from https://github.com/practice-org-123/BloqWeb-Test.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.39.2'
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --force --progress -- https://github.com/practice-org-123/BloqWeb-Test.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/practice-org-123/BloqWeb-Test.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision e2de030ac13c5b3c6a0c55207cc56142e451888f (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f e2de030ac13c5b3c6a0c55207cc56142e451888f # timeout=10
+Commit message: "Update jenkinsfile"
+First time build. Skipping changelog.
+Finished: SUCCESS

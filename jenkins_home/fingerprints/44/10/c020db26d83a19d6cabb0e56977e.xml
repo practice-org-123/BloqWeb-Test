@@ -1,0 +1,13 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<fingerprint>
+  <timestamp>2024-08-30 06:56:50.883 UTC</timestamp>
+  <md5sum>4410c020db26d83a19d6cabb0e56977e</md5sum>
+  <fileName>Credential id=363e0c17-10ab-4c6f-ac78-eb1c10bb1200 name=363e0c17-10ab-4c6f-ac78-eb1c10bb1200</fileName>
+  <usages>
+    <entry>
+      <string>Test</string>
+      <ranges>1</ranges>
+    </entry>
+  </usages>
+  <facets/>
+</fingerprint>
