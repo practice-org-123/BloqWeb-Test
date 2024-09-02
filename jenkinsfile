@@ -16,21 +16,6 @@ pipeline {
             }
         }
 
-        stage('Run Postman Collection') {
-            steps {
-                // Run the Postman collection
-                sh 'newman run Health-Check.postman_collection.json -r htmlextra'
-            }
-        }
-
-        stages {
-        stage('Generate Report') {
-            steps {
-                // Assuming your script generates the report in the specified directory
-                sh 'mkdir -p /var/lib/jenkins/jobs/BloqWeb/htmlreports/Bloqweb_20HTML_20Report && echo "<html><body><h1>Report</h1></body></html>" > /var/lib/jenkins/jobs/BloqWeb/htmlreports/HTML_20Report'
-            }
-        }
-    }
 
     post {
         success {
