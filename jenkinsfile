@@ -16,44 +16,32 @@ pipeline {
             }
         }
 
+        stage('Run Postman Collection') {
+            steps {
+                // Run the Postman collection
+                sh 'newman run Health-Check.postman_collection.json -r htmlextra'
+            }
+        }
+
+        stages {
+        stage('Generate Report') {
+            steps {
+                // Assuming your script generates the report in the specified directory
+                sh 'mkdir -p /newman/reports/html_report && echo "<html><body><h1>Report</h1></body></html>" > /newman/reports/html_report
+            }
+        }
+    }
 
     post {
         success {
             publishHTML(target: [
                 reportName : 'My Report',
-                reportDir  : '/var/lib/jenkins/jobs/BloqWeb/htmlreports/HTML_20Report',
+                reportDir  : '/newman/reports',
                 reportFiles: 'index.html',
                 keepAll    : true,
                 alwaysLinkToLastBuild: true,
                 allowMissing: false
             ])
-        }
-    }
-}
-
-
-    stages {
-        stage('Checkout') {
-            steps {
-                // Clone the repository
-                git url: 'https://github.com/your-repo.git', branch: 'main'
-            }
-        }
-        stage('Install Dependencies') {
-            steps {
-                script {
-                    // Install Newman and htmlextra reporter globally
-                    sh 'npm install -g newman newman-reporter-htmlextra'
-                }
-            }
-        }
-        stage('Run Postman Collection') {
-            steps {
-                script {
-                    // Run the Postman collection with htmlextra reporter
-                    sh 'newman run path/to/your/postman_collection.json -r htmlextra'
-                }
-            }
         }
     }
 }
