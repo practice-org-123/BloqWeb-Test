@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/Joshisumedhraj/BloqWeb-demo.git', branch: 'main'
+                git url: 'https://github.com/practice-org-123/BloqWeb-Test', branch: 'main'
             }
         }
 
