@@ -23,11 +23,13 @@ pipeline {
             }
         }
 
-        stages {
         stage('Generate Report') {
             steps {
-                // Assuming your script generates the report in the specified directory
-                sh 'mkdir -p /newman/reports/html_report && echo "<html><body><h1>Report</h1></body></html>" > /newman/reports/html_report
+                // Generate the HTML report
+                sh '''
+                mkdir -p /newman/reports/html_report
+                echo "<html><body><h1>Report</h1></body></html>" > /newman/reports/html_report/index.html
+                '''
             }
         }
     }
@@ -36,7 +38,7 @@ pipeline {
         success {
             publishHTML(target: [
                 reportName : 'My Report',
-                reportDir  : '/newman/reports',
+                reportDir  : '/newman/reports/html_report',
                 reportFiles: 'index.html',
                 keepAll    : true,
                 alwaysLinkToLastBuild: true,
