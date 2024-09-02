@@ -13,6 +13,8 @@ pipeline {
             steps {
                 // Install Node.js dependencies
                 sh 'npm install -g newman'
+                sh 'npm install -g newman-reporter-htmlextra'
+
             }
         }
 
@@ -28,7 +30,7 @@ pipeline {
                 // Generate the HTML report
                 sh '''
                 mkdir -p /newman/reports/html_report
-                echo "<html><body><h1>Report</h1></body></html>" > /newman/reports/html_report/
+                echo "<html><body><h1>Report</h1></body></html>" > /newman/reports/html_report/index.html
                 '''
             }
         }
