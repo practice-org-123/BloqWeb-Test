@@ -28,7 +28,7 @@ pipeline {
                 // Generate the HTML report
                 sh '''
                 mkdir -p /newman/reports/html_report
-                echo "<html><body><h1>Report</h1></body></html>" > /newman/reports/html_report/index.html
+                echo "<html><body><h1>Report</h1></body></html>" > /newman/reports/html_report/
                 '''
             }
         }
