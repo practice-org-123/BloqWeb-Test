@@ -2,50 +2,68 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                // Clone the repository
-                git url: 'https://github.com/practice-org-123/BloqWeb-Test', branch: 'main'
-            }
-        }
+        // stage('Checkout') {
+        //     steps {
+        //         git url: 'https://github.com/practice-org-123/BloqWeb-Test', branch: 'main'
+        //     }
+        // }
 
-        stage('Install Dependencies') {
-            steps {
-                // Install Node.js dependencies
-                sh 'npm install -g newman'
-                sh 'npm install -g newman-reporter-htmlextra'
-
-            }
-        }
+      
+        // stage('Install Dependencies') {
+        //     steps {
+        //         sh '''
+        //         npm install -g uuid@latest
+        //         npm install har-validator
+        //         npm install -g newman newman-reporter-htmlextra
+        //         newman-reporter-htmlextra -v
+        //         '''
+        //     }
+        // }
+        
+        
 
         stage('Run Postman Collection') {
             steps {
-                // Run the Postman collection
-                sh 'newman run Health-Check.postman_collection.json -r htmlextra'
+                sh 'newman run  /newman/reports/Health-Check.postman_collection.json -r cli,htmlextra  --reporter-htmlextra-export /newman/reports/'
             }
         }
+        
+        // stage('Generate Report') {
+        //     steps {
+        //         sh '''
+        //             mkdir -p $/Amit-BQ/workspace/$JOB_BASE_NAME/htmlreports/Bloqweb_20HTML_20Report
+        //             echo "<html><body><h1>Report</h1></body></html>" > $/Amit-BQ/workspace/$JOB_BASE_NAME/htmlreports/Bloqweb_20HTML_20Report/index.html
 
-        stage('Generate Report') {
+        //         '''
+        //     }
+        // }
+    
+         stage('Publish HTML Report') {
             steps {
-                // Generate the HTML report
-                sh '''
-                mkdir -p /newman/reports/html_report
-                echo "<html><body><h1>Report</h1></body></html>" > /newman/reports/html_report/index.html
-                '''
-            }
-        }
-    }
+               Publish the HTML report
+                 publishHTML (target:
+                 reportName: 'HTML Report',)
+                 reportDir: '/newman/reports/',
+                 reportFiles: 'report.html',
+                 keepAll: true,
+                 lwaysLinkToLastBuild: true,
+                 allowMissing: false
 
-    post {
-        success {
-            publishHTML(target: [
-                reportName : 'My Report',
-                reportDir  : '/newman/reports/html_report',
-                reportFiles: 'index.html',
-                keepAll    : true,
-                alwaysLinkToLastBuild: true,
-                allowMissing: false
-            ])
-        }
-    }
+        //post {
+        // success {
+        //     publishHTML(target: [
+        //         reportName: 'My Report',
+        //         reportDir: 'htmlreports/Bloqweb_20HTML_20Report',
+        //         reportFiles: 'index.html',
+        //         keepAll: true,
+        //         alwaysLinkToLastBuild: true,
+        //         allowMissing: false
+        //     ])
+        // }
+    //}
+
+}
+
+}
+}
 }
